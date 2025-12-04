@@ -1,0 +1,96 @@
+# Node modules
+/node_modules/
+
+# Build output
+/dist/
+/build/
+/out/
+
+# Vite cache
+/.vite/
+
+# Parcel cache
+/.parcel-cache/
+
+# Next.js (если используешь Next, раскомментируй нужные строки)
+# /.next/
+/.next/cache/
+
+# Environment files (хранят секреты — не коммитить)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories (если используешь пакеты yarn 2+)
+.pnp/
+/.pnp.js
+
+# Testing
+/coverage/
+/jest-cache/
+/jest/
+
+/# Testing caches
+/.parcel-test/
+
+# Editor directories and system files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDEs
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+*.lnk
+
+# Temp files
+tmp/
+temp/
+
+# Build artifacts for various tools
+dist-*/
+build-*/
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# Babel cache
+.cache/
+babel-cache/
+
+# MacOS Spotlight
+.AppleDouble
+.LSOverride
+
+# Storybook
+/storybook-static/
+
+# Yarn berry cache
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/patches
+.yarn/releases
+
+# Optional: lock files (обычно НЕ игнорируются — оставлять закомментированными)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
