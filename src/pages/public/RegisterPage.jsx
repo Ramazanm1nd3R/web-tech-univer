@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useApp } from "../../context/AppContext";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const { loginUser, addBadge } = useApp();
+  
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -34,6 +37,16 @@ export default function RegisterPage() {
       alert("⚠ Необходимо согласиться с условиями использования.");
       return;
     }
+
+    // Логиним пользователя
+    loginUser({
+      name: formData.fullname,
+      email: formData.email,
+      phone: formData.phone,
+    });
+
+    // Добавляем бейдж за регистрацию
+    addBadge('first-login');
 
     alert(`🎉 Добро пожаловать, ${formData.fullname}! Ваш аккаунт успешно создан.`);
     navigate("/");
