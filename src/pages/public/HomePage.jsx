@@ -10,7 +10,8 @@ export default function HomePage() {
       image: "/src/assets/cardsjpeg.jpeg",
       description: "Дебетовые и кредитные карты с кешбэком до 10%",
       price: 0,
-      category: "Карты"
+      category: "Карты",
+      link: "/cards"
     },
     {
       id: 2,
@@ -18,15 +19,17 @@ export default function HomePage() {
       image: "/src/assets/deposit.jpg",
       description: "Надежные вклады с доходностью до 14.5% годовых",
       price: 0,
-      category: "Депозиты"
+      category: "Депозиты",
+      link: "/products"
     },
     {
       id: 3,
-      name: "Ипотека",
+      name: "Кредиты",
       image: "/src/assets/ipoteka.jpeg",
-      description: "Ипотечные программы от 6.9% годовых",
+      description: "Кредитные программы от 6.9% годовых",
       price: 0,
-      category: "Ипотека"
+      category: "Кредиты",
+      link: "/loans"
     },
     {
       id: 4,
@@ -34,7 +37,8 @@ export default function HomePage() {
       image: "/src/assets/invest.jpeg",
       description: "Инвестиционные портфели для роста капитала",
       price: 0,
-      category: "Инвестиции"
+      category: "Инвестиции",
+      link: "/invest"
     }
   ]);
 
@@ -138,13 +142,11 @@ export default function HomePage() {
           <nav className="menu">
             <Link to="/" className="menu__link active">Главная</Link>
             <Link to="/products" className="menu__link">Продукты</Link>
-            <a href="#" className="menu__link">Ипотека</a>
-            <a href="#" className="menu__link">Карты</a>
-            <a href="#" className="menu__link">Кредиты</a>
-            <a href="#" className="menu__link">Депозиты</a>
-            <a href="#" className="menu__link">Инвестиции</a>
-            <a href="#" className="menu__link">Платежи</a>
-            <a href="#" className="menu__link">Тарифы</a>
+            <Link to="/cards" className="menu__link">Карты</Link>
+            <Link to="/loans" className="menu__link">Кредиты</Link>
+            <Link to="/invest" className="menu__link">Инвестиции</Link>
+            <Link to="/about" className="menu__link">О нас</Link>
+            <Link to="/contact" className="menu__link">Контакты</Link>
           </nav>
 
           <div style={{ display: "flex", gap: "10px" }}>
@@ -167,8 +169,8 @@ export default function HomePage() {
             <p className="hero__text">Умные продукты, прозрачные ставки, мгновенные переводы — всё в одном приложении.</p>
 
             <div className="hero__cta">
-              <button onClick={() => setShowCart(true)} className="btn btn--primary">Корзина</button>
-              <a href="#" className="btn btn--ghost">Узнать тарифы</a>
+              <Link to="/products" className="btn btn--primary">Наши продукты</Link>
+              <Link to="/about" className="btn btn--ghost">Узнать больше</Link>
             </div>
 
             <ul className="hero__badges">
@@ -195,8 +197,8 @@ export default function HomePage() {
       {/* BLACK FRIDAY + NEW YEAR COUNTDOWN */}
       <section className="bf-ny-wrapper reveal active">
         <div className="bf-ny-box glass">
-          <h2 className="bf-title">Black Friday + New Year Sale</h2>
-          <p className="bf-sub">До супер-скидок осталось:</p>
+          <h2 className="bf-title">🎄 New Year Sale 2025 🎉</h2>
+          <p className="bf-sub">До Нового Года осталось:</p>
 
           <div className="countdown">
             <div><span>{String(countdown.days).padStart(2, '0')}</span><label>Дней</label></div>
@@ -224,12 +226,22 @@ export default function HomePage() {
                 <div className="card__body">
                   <h3 className="card__title">{product.name}</h3>
                   <p className="card__text">{product.description}</p>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="btn btn--primary"
-                  >
-                    В корзину
-                  </button>
+                  <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
+                    <Link
+                      to={product.link}
+                      className="btn btn--primary"
+                      style={{ flex: 1 }}
+                    >
+                      Подробнее
+                    </Link>
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="btn btn--ghost"
+                      style={{ flex: 1 }}
+                    >
+                      В корзину
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -280,8 +292,8 @@ export default function HomePage() {
               <h3>Наше предложение</h3>
               <p>Ставка депозита: <strong>{rate}%</strong></p>
               <p>Сумма в конце срока: <strong>{Math.round(finalSum).toLocaleString()} ₸</strong></p>
-              <p>Доход: {Math.round(profit).toLocaleString()} ₸</p>
-              <button className="btn btn--primary">Подробнее</button>
+              <p>Доход: <strong style={{ color: "#10b981" }}>+{Math.round(profit).toLocaleString()} ₸</strong></p>
+              <Link to="/products" className="btn btn--primary">Открыть депозит</Link>
             </div>
           </div>
         </div>
@@ -290,12 +302,31 @@ export default function HomePage() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footer__inner">
-          <p>Мы в соцсетях:</p>
-          <p className="footer__links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Telegram</a>
-          </p>
+          <div className="footer-content">
+            <div className="footer-section">
+              <h4>RomaCreditBank</h4>
+              <p>Онлайн-банк нового поколения</p>
+            </div>
+            <div className="footer-section">
+              <h4>Продукты</h4>
+              <Link to="/cards">Карты</Link>
+              <Link to="/loans">Кредиты</Link>
+              <Link to="/invest">Инвестиции</Link>
+            </div>
+            <div className="footer-section">
+              <h4>Компания</h4>
+              <Link to="/about">О нас</Link>
+              <Link to="/contact">Контакты</Link>
+            </div>
+            <div className="footer-section">
+              <h4>Мы в соцсетях</h4>
+              <div className="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Telegram</a>
+              </div>
+            </div>
+          </div>
           <p className="copy">© 2025 RomaCreditBank. Все права защищены.</p>
         </div>
       </footer>
@@ -314,37 +345,157 @@ export default function HomePage() {
 
             <div className="cart-popup__items">
               {cart.length === 0 ? (
-                <p>Корзина пуста</p>
+                <div className="empty-cart">
+                  <p>🛒 Корзина пуста</p>
+                  <Link to="/products" onClick={() => setShowCart(false)} className="btn btn--primary">
+                    Перейти к продуктам
+                  </Link>
+                </div>
               ) : (
                 cart.map(item => (
                   <div key={item.id} className="cart-item">
                     <img src={item.image} alt={item.name} />
-                    <div>
+                    <div className="cart-item-info">
                       <h4>{item.name}</h4>
-                      <p>{item.price} ₸</p>
+                      <p>{item.price > 0 ? `${item.price} ₸` : 'Бесплатно'}</p>
                     </div>
-                    <div>
+                    <div className="cart-item-controls">
                       <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
                       <span>{item.quantity}</span>
                       <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                     </div>
-                    <button onClick={() => removeFromCart(item.id)}>Удалить</button>
+                    <button onClick={() => removeFromCart(item.id)} className="btn-remove">🗑️</button>
                   </div>
                 ))
               )}
             </div>
 
-            <div className="cart-popup__footer">
-              <div className="cart-popup__total">
-                Итого: <span>{total.toLocaleString()} ₸</span>
+            {cart.length > 0 && (
+              <div className="cart-popup__footer">
+                <div className="cart-popup__total">
+                  Итого: <span>{total.toLocaleString()} ₸</span>
+                </div>
+                <button className="btn btn--primary cart-popup__checkout">
+                  Оформить заказ
+                </button>
               </div>
-              <button className="btn btn--primary cart-popup__checkout">
-                Оформить заказ
-              </button>
-            </div>
+            )}
           </div>
         </div>
       )}
+
+      <style>{`
+        .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+          color: #fff;
+          margin-bottom: 1rem;
+          font-size: 1.125rem;
+        }
+
+        .footer-section a {
+          display: block;
+          color: rgba(255, 255, 255, 0.7);
+          text-decoration: none;
+          margin-bottom: 0.5rem;
+          transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+          color: #6366f1;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .empty-cart {
+          text-align: center;
+          padding: 3rem 1rem;
+        }
+
+        .empty-cart p {
+          font-size: 1.5rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin-bottom: 1.5rem;
+        }
+
+        .cart-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 8px;
+          margin-bottom: 1rem;
+        }
+
+        .cart-item img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        .cart-item-info {
+          flex: 1;
+        }
+
+        .cart-item-info h4 {
+          color: #fff;
+          margin: 0 0 0.25rem 0;
+        }
+
+        .cart-item-info p {
+          color: rgba(255, 255, 255, 0.6);
+          margin: 0;
+          font-size: 0.95rem;
+        }
+
+        .cart-item-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .cart-item-controls button {
+          width: 32px;
+          height: 32px;
+          background: rgba(99, 102, 241, 0.2);
+          border: 1px solid #6366f1;
+          border-radius: 6px;
+          color: #6366f1;
+          cursor: pointer;
+          font-weight: 700;
+        }
+
+        .cart-item-controls span {
+          min-width: 30px;
+          text-align: center;
+          color: #fff;
+          font-weight: 600;
+        }
+
+        .btn-remove {
+          background: rgba(239, 68, 68, 0.2);
+          border: 1px solid #ef4444;
+          border-radius: 6px;
+          color: #ef4444;
+          cursor: pointer;
+          padding: 0.5rem;
+          font-size: 1.125rem;
+        }
+
+        .btn-remove:hover {
+          background: rgba(239, 68, 68, 0.3);
+        }
+      `}</style>
     </>
   );
 }

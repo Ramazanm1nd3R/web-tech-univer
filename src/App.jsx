@@ -5,6 +5,11 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import HomePage from "./pages/public/HomePage";
 import ProductsPublicPage from "./pages/public/ProductsPublicPage";
 import RegisterPage from "./pages/public/RegisterPage";
+import AboutPage from "./pages/public/AboutPage";
+import ContactPage from "./pages/public/ContactPage";
+import CardsPage from "./pages/public/CardsPage";
+import LoansPage from "./pages/public/LoansPage";
+import InvestPage from "./pages/public/InvestPage";
 
 // Admin pages
 import AdminLayout from "./components/AdminLayout";
@@ -13,11 +18,16 @@ import DashboardPage from "./pages/admin/DashboardPage";
 import ProductsPage from "./pages/admin/ProductsPage";
 import UsersPage from "./pages/admin/UsersPage";
 import OrdersPage from "./pages/admin/OrdersPage";
+import TransactionsPage from "./pages/admin/TransactionsPage";
+import CardsManagementPage from "./pages/admin/CardsManagementPage";
+import LoansManagementPage from "./pages/admin/LoansManagementPage";
 import AnalyticsPage from "./pages/admin/AnalyticsPage";
 import SettingsPage from "./pages/admin/SettingsPage";
 import FilesPage from "./pages/admin/FilesPage";
 import LogsPage from "./pages/admin/LogsPage";
 import ProfilePage from "./pages/admin/ProfilePage";
+import NotificationsPage from "./pages/admin/NotificationsPage";
+import SecurityPage from "./pages/admin/SecurityPage";
 
 export const AuthContext = React.createContext(null);
 
@@ -69,10 +79,17 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ isAuth, login, logout }}>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPublicPage />} />
+        <Route path="/cards" element={<CardsPage />} />
+        <Route path="/loans" element={<LoansPage />} />
+        <Route path="/invest" element={<InvestPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
+        {/* Admin Routes */}
         <Route path="/admin/login" element={<LoginPage />} />
 
         <Route
@@ -87,7 +104,12 @@ export default function App() {
           <Route path="products" element={<ProductsPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="orders" element={<OrdersPage />} />
+          <Route path="transactions" element={<TransactionsPage />} />
+          <Route path="cards" element={<CardsManagementPage />} />
+          <Route path="loans" element={<LoansManagementPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="security" element={<SecurityPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="files" element={<FilesPage />} />
           <Route path="logs" element={<LogsPage />} />
